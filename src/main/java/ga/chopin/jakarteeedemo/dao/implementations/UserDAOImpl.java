@@ -69,6 +69,7 @@ public class UserDAOImpl implements IUserDAO {
         TypedQuery<User> query = entityManager.createQuery("select u from User u where u.email=:email and u.password=:password", User.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
+        query.setMaxResults(1);
         if (query.getResultList().isEmpty()) {
             return null;
         }
