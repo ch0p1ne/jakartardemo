@@ -111,8 +111,10 @@ public class HelloServlet extends HttpServlet {
         else if (path.equals("/profil")) {
             request.getRequestDispatcher("pages/utilisateur/profil.jsp").forward(request, response);
         } else if (path.equals("/update") && (request.getMethod().equals("POST"))) {
-            User user;
             HttpSession session = request.getSession();
+            Long id = Long.parseLong(request.getParameter("id"));
+            User user = userDAO.findById(id);
+
             String nom = request.getParameter("last_name");
             String prenom = request.getParameter("first_name");
             String sexe = request.getParameter("sexe");
@@ -122,7 +124,14 @@ public class HelloServlet extends HttpServlet {
             String email = request.getParameter("email");
             LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
 
-            user = new User(null, prenom, nom, role, actif, sexe,email, password, dateNaissance );
+            user.setLastName(nom);
+            user.setFirstName(prenom);
+            user.setSexe(sexe);
+            user.setActif(actif);
+            user.setEmail(email);
+            user.setDateNaissance(dateNaissance);
+            user.setPassword(password);
+            user.setRole(role);
             userDAO.update(user);
             session.setAttribute("user",user);
 

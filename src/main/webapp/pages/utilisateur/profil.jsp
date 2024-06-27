@@ -83,6 +83,7 @@
                                     <input type="text"  id="password" name="password" class="f-w-600" value="${user.password}">
                                 </div>
                                 <br>
+                                <input type="hidden" name="id" value="${user.id}">
                                 <input type="submit" class="mt-md-3 btn btn-info" value="mettre a jour">
                             </form>
                             </div>

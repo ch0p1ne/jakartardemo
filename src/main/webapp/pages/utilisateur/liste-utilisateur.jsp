@@ -25,6 +25,7 @@
                 <tr>
                     <th>ID</th>
                     <th>ROLE</th>
+                    <th>email</th>
                     <th>ACTIF</th>
                     <th>PRENOM</th>
                     <th>NOM</th>
@@ -35,15 +36,18 @@
                     <tr>
                         <td>${p.id}</td>
                         <td>${p.role}</td>
+                        <td>${p.email}</td>
                         <td>${p.actif}</td>
                         <td>${p.firstName}</td>
                         <td>${p.lastName}</td>
                         <td>${p.sexe}</td>
                         <td>${p.dateNaissance}</td>
-                        <td> <button class="btn btn-info"> <a href="profil.jsp?userId=${p.id}" >edit profil</a> </button> </td>
+                        <td> <button class="btn btn-info"> <a href="profil?userId=${p.id}" >edit profil</a> </button> </td>
+                        <td> <button class="btn btn-warning text-danger"> <a href="delete?userId=${p.id}" >delete profil</a> </button> </td>
                     </tr>
                 </c:forEach>
             </table>
+            <button class="btn btn-info text-danger"> <a href="inscription" >Add profil</a> </button>
         </div>
     </div>
 </div>
