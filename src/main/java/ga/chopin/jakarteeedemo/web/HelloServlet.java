@@ -110,7 +110,8 @@ public class HelloServlet extends HttpServlet {
         }
         else if (path.equals("/profil")) {
             request.getRequestDispatcher("pages/utilisateur/profil.jsp").forward(request, response);
-        } else if (path.equals("/update") && (request.getMethod().equals("POST"))) {
+        }
+        else if (path.equals("/update") && (request.getMethod().equals("POST"))) {
             HttpSession session = request.getSession();
             Long id = Long.parseLong(request.getParameter("id"));
             User user = userDAO.findById(id);
@@ -136,10 +137,15 @@ public class HelloServlet extends HttpServlet {
             session.setAttribute("user",user);
 
             response.sendRedirect("profil");
-        } else {
+        }
+        else if (path.equals("/liste-immeuble")) {
+            request.getRequestDispatcher("pages/immeuble/liste-immeuble.jsp").forward(request, response);
+        }
+        else {
             System.out.println(path);
             response.sendError(response.SC_NOT_FOUND);
         }
+
 
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
